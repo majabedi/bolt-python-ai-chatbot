@@ -28,7 +28,7 @@ class OpenAI_API(BaseAPIProvider):
 
     def generate_response(self, prompt: str, system_content: str) -> str:
         try:
-            base_url="https://api.helmholtz-blablador.fz-juelich.de/v1" #it is better to do it a better way, but for now we only change the URL. The Base_URL is taken from https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/
+            base_url = "https://api.helmholtz-blablador.fz-juelich.de/v1" #it is better to do it a better way, but for now we only change the URL. The Base_URL is taken from https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/
             self.client = openai.OpenAI(api_key=self.api_key, base_url=base_url)
             response = self.client.chat.completions.create(
                 model=self.current_model,
