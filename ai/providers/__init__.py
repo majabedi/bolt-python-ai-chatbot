@@ -48,6 +48,7 @@ def get_provider_response(user_id: str, prompt: str, context: Optional[List] = [
     try:
         provider_name, model_name = get_user_state(user_id, False)
         provider = _get_provider(provider_name)
+        model_name="gpt-3.5-turbo" #	It is better to do it in a better way, but for now we go on with this change. The model name is taken from the documentation https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access
         provider.set_model(model_name)
         response = provider.generate_response(full_prompt, system_content)
         return response

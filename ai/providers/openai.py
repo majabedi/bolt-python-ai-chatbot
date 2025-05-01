@@ -14,6 +14,7 @@ class OpenAI_API(BaseAPIProvider):
         "gpt-4o": {"name": "GPT-4o", "provider": "OpenAI", "max_tokens": 4096},
         "gpt-4o-mini": {"name": "GPT-4o mini", "provider": "OpenAI", "max_tokens": 16384},
         "gpt-3.5-turbo-0125": {"name": "GPT-3.5 Turbo", "provider": "OpenAI", "max_tokens": 4096},
+        "gpt-3.5-turbo": {"name": "GPT-3.5 Turbo", "provider": "OpenAI", "max_tokens": 4096},
     }
 
     def __init__(self):
@@ -32,7 +33,8 @@ class OpenAI_API(BaseAPIProvider):
 
     def generate_response(self, prompt: str, system_content: str) -> str:
         try:
-            self.client = openai.OpenAI(api_key=self.api_key)
+            base_url="https://api.helmholtz-blablador.fz-juelich.de/v1" #it is better to do it a better way, but for now we only change the URL. The Base_URL is taken from https://sdlaml.pages.jsc.fz-juelich.de/ai/guides/blablador_api_access/
+            self.client = openai.OpenAI(api_key=self.api_key, base_url=base_url)
             response = self.client.chat.completions.create(
                 model=self.current_model,
                 n=1,
